@@ -1,19 +1,12 @@
-import Card from "@/components/Card";
-import Header from "@/components/Header";
-import SectionTitle from "@/components/SectionTitle";
+import Card from "@/components/common/Card";
+import SectionTitle from "@/components/common/SectionTitle";
+import PopularPosts from "@/components/posts/PopularPosts";
 import { DUMMY_DATA } from "@/constants/DUMMY_DATA";
 export default function Home() {
   return (
     <div className='container mx-auto px-[16px]'>
 
-      <section>
-        <SectionTitle text="Popular"/>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {DUMMY_DATA.map((post) => (
-            <Card post={post} />
-          ))}
-        </div>
-      </section>
+      <PopularPosts/>
 
       <section>
         <SectionTitle text="Trending"/>
