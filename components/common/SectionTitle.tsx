@@ -6,7 +6,7 @@ interface Props {
 
 const SectionTitle: React.FC<Props> = ({ text }) => {
   return (
-    <h1 className='text-xl border-b-4 border-teal-950 w-fit mb-6'>{text}</h1>
+    <h1 className='text-2xl border-b-4 border-teal-950 w-fit mb-8'>{text}</h1>
   );
 }
 

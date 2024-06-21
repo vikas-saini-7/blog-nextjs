@@ -3,8 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { DUMMY_DATA } from "@/constants/DUMMY_DATA";
 import Card from '../common/Card';
 import SectionTitle from '../common/SectionTitle';
+// import { unstable_noStore } from 'next/cache';
 
 const PopularPosts = () => {
+  // useEffect(()=> {
+  //   try {
+  //     unstable_noStore
+  //   } catch (error) {
+      
+  //   }
+  // }, [])
   return (
     <section>
         <SectionTitle text="Popular"/>

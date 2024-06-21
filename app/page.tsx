@@ -11,14 +11,14 @@ export default function Home() {
     <div className='container mx-auto px-[16px]'>
 
       <Suspense fallback={<PopularPostsSkeleton/>}>
-        <PopularPostsSkeleton/>
+        <PopularPosts/>
       </Suspense>
 
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<PopularPostsSkeleton/>}>
         <TrendingPosts/>
       </Suspense>
 
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<PopularPostsSkeleton/>}>
         <YouMayAlsoLike/>
       </Suspense>
 

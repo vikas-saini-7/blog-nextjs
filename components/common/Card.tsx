@@ -1,5 +1,7 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   post: {
@@ -15,6 +17,10 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ post }) => {
+  const router = useRouter();
+  const handlePostClick = (postId : number) => {
+    router.push(`/post/${postId}`)
+  }
   return (
     <div className="rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-800">
       <img className="w-full h-48 object-cover" src={"https://media.sproutsocial.com/uploads/2019/09/how-to-write-a-blog-post.svg"} alt={post.title} />
@@ -23,16 +29,14 @@ const Card: React.FC<Props> = ({ post }) => {
         <p className="text-gray-700 text-base mb-4">{post.summary}</p>
         <div className="text-gray-600 text-sm mb-4">
           By <span className="font-semibold">{post.author}</span> on{' '}
-          {new Date(post.datePublished).toLocaleDateString()}
+          {new Date(post.datePublished).toLocaleDateString('en-US')}
         </div>
-        <a
-          href={post.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:text-blue-700 font-semibold"
+        <div
+          className="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer"
+          onClick={() => handlePostClick(post.id)}
         >
           Read more
-        </a>
+        </div>
       </div>
       <div className="px-6 pt-4 pb-2">
         {post.tags.map((tag) => (
