@@ -17,15 +17,7 @@ interface Props {
 const Card: React.FC<Props> = ({ post }) => {
   return (
     <div className="rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-800">
-      {/* <Image
-      src={"https://media.sproutsocial.com/uploads/2019/09/how-to-write-a-blog-post.svg"}
-      alt={post.title}
-      layout="fill"
-      objectFit="contain"
-      className="rounded-t"
-      /> */}
-
-    <img className="w-full h-48 object-cover" src={"https://media.sproutsocial.com/uploads/2019/09/how-to-write-a-blog-post.svg"} alt={post.title} />
+      <img className="w-full h-48 object-cover" src={"https://media.sproutsocial.com/uploads/2019/09/how-to-write-a-blog-post.svg"} alt={post.title} />
       <div className="p-2 px-6">
         <div className="font-bold text-xl mb-2">{post.title}</div>
         <p className="text-gray-700 text-base mb-4">{post.summary}</p>

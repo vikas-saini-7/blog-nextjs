@@ -1,30 +1,26 @@
 import Card from "@/components/common/Card";
 import SectionTitle from "@/components/common/SectionTitle";
 import PopularPosts from "@/components/posts/PopularPosts";
+import TrendingPosts from "@/components/posts/TrendingPosts";
+import YouMayAlsoLike from "@/components/posts/YouMayAlsoLike";
+import { PopularPostsSkeleton } from "@/components/skeletons/Skeletons";
 import { DUMMY_DATA } from "@/constants/DUMMY_DATA";
+import { Suspense } from "react";
 export default function Home() {
   return (
     <div className='container mx-auto px-[16px]'>
 
-      <PopularPosts/>
+      <Suspense fallback={<PopularPostsSkeleton/>}>
+        <PopularPostsSkeleton/>
+      </Suspense>
 
-      <section>
-        <SectionTitle text="Trending"/>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {DUMMY_DATA.slice(0, 4).map((post) => (
-            <Card post={post} />
-          ))}
-        </div>
-      </section>
+      <Suspense fallback={<p>Loading...</p>}>
+        <TrendingPosts/>
+      </Suspense>
 
-      <section>
-        <SectionTitle text="You may also like"/>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {DUMMY_DATA.slice(0, 4).map((post) => (
-            <Card post={post} />
-          ))}
-        </div>
-      </section>
+      <Suspense fallback={<p>Loading...</p>}>
+        <YouMayAlsoLike/>
+      </Suspense>
 
     </div>
   );
