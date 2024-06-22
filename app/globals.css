@@ -38,3 +38,6 @@ section{
   /* background-color: rgba(255, 255, 255, 0.01); */
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+.chat-container{
+  height: calc(100vh - 91px);
+}
