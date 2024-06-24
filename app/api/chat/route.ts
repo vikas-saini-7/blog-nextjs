@@ -1,29 +1,17 @@
-import OpenAI from 'openai';
-import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { type CoreMessage, streamText } from 'ai';
+import { google } from '@ai-sdk/google';
 
-const openai = new OpenAI({
-    apiKey: "",
-})
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
 
-export const runtime = "edge";
+export async function POST(req: Request) {
+  const { messages }: { messages: CoreMessage[] } = await req.json();
 
-export async function POST(req: Request, res: Response){
-    const {messages} = await req.json();
-    console.log('messages:', messages);
+  const result = await streamText({
+    model: google("models/gemini-1.5-pro-latest"),
+    system: 'You are a helpful assistant.',
+    messages,
+  });
 
-    const response = await openai.chat.completions.create({
-        model: "gpt-4-1106-preview",
-        messages: [
-            {
-                role: 'system',
-                content: "" + "" + ""
-            },
-            ...messages
-        ],
-        stream: true,
-        temperature: 1,
-    });
-    const stream = OpenAIStream(response);
-
-    return new StreamingTextResponse(stream);
+  return result.toAIStreamResponse();
 }

@@ -1,54 +1,29 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { IconSend } from '@tabler/icons-react'
+import React from 'react';
 import { useChat } from 'ai/react';
-
-interface OpenAIResponse {
-    choices: [
-      {
-        text: string;
-      }
-    ];
-}
-
-interface Message {
-    id: number;
-    content: string;
-}
-
+import { IconSend } from '@tabler/icons-react'
 const page = () => {
-
-    const [messages, input, handleInputChange, handleSubmit] = useChat({
-        api: '/api/chat'
-    });
-    
-    const renderResponse = (): React.ReactElement => {
-        return (
-            <div>
-                {messages.map((m: Message) => (
-                    <div key={m.id}>
-                        <p>{m.content}</p>
-                    </div>
-                ))}
-            </div>
-        )
-    }
+    const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   return (
     <div className='container mx-auto chat-container flex flex-col'>
         <div className="top flex-1 w-full max-w-[900px] mx-auto mt-4 mb-[90px] overflow-auto">
-        {renderResponse()}
+        {messages.map(m => (
+            <div key={m.id} className="whitespace-pre-wrap">
+            {m.role === 'user' ? 'User: ' : 'AI: '}
+            {m.content}
+            </div>
+        ))}
         </div>
         <div className='bottom w-full max-w-[900px] mx-auto'>
-            <form onSubmit={handleSubmit} className='relative'>
+            <form className='relative' onSubmit={handleSubmit}>
                 <input
-                    type="text"
-                    onChange={handleInputChange}
-                    placeholder='Ask Something...'
-                    className='w-full bg-gray-500 rounded-lg h-16 bg-opacity-10 px-6'
-                    />
-                <button type="submit" className='absolute right-6 top-5 text-gray-500'>
+                className="w-full h-16 bg-gray-900 px-4 rounded-lg"
+                value={input}
+                placeholder="Say something..."
+                onChange={handleInputChange}
+                />
+                <button onClick={handleSubmit} className='absolute right-6 top-5 text-gray-500'>
                     <IconSend/>
                 </button>
             </form>
