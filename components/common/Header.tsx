@@ -11,7 +11,7 @@ const Header = () => {
       <div className='container mx-auto'>
         <div className="flex items-center justify-between px-[16px] h-[90px]">
           {pathname === "/chat" ? 
-          <Link href='/chat'><p className='font-bold uppercase text-3xl'>chat bot <span className='bg-teal-500 h-4 w-4 rounded-full inline-block'></span> </p></Link>
+          <Link href='/chat'><p className='font-bold uppercase text-3xl'>raw gpt <span className='bg-teal-500 h-4 w-4 rounded-full inline-block'></span> </p></Link>
           :
           <Link href='/'><p className='font-bold uppercase text-3xl'>Bloggo <span className='bg-teal-500 h-4 w-4 rounded-full inline-block'></span> </p></Link>
           }
